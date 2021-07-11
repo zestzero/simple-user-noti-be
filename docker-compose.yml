@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  simplenotidb:
+    image: mongo:latest
+    container_name: simplenotidb
+    restart: always
+    env_file: .env
+    environment:
+      - MONGO_INITDB_DATABASE=$MONGO_DB
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+      - MONGO_INITDB_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_PASSWORD=$MONGO_PASSWORD
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      # - dbdata:/data/db #windows
+      - ./dbdata:/data/db #mac
+    command: [--auth]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:
