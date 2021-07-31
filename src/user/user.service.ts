@@ -20,8 +20,4 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return this.userModel.find();
   }
-
-  getHello(): string {
-    return 'Hello World!';
-  }
 }
