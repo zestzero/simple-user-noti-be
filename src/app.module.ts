@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { TaskModule } from './task/task.module';
 import { UserModule } from './user/user.module';
 
 const getMongoConnection = async (configService: ConfigService) => {
@@ -26,6 +27,7 @@ const getMongoConnection = async (configService: ConfigService) => {
       inject: [ConfigService],
     }),
     UserModule,
+    TaskModule,
   ],
 })
 export class AppModule implements NestModule {
