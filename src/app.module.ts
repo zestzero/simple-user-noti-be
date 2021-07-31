@@ -2,10 +2,8 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserController } from './modules/user/user.controller';
-import { UserService } from './modules/user/user.service';
+import { TaskModule } from './task/task.module';
+import { UserModule } from './user/user.module';
 
 const getMongoConnection = async (configService: ConfigService) => {
   const connectionUri = `mongodb://${configService.get<string>(
@@ -13,7 +11,6 @@ const getMongoConnection = async (configService: ConfigService) => {
   )}:${configService.get<string>('MONGO_PASSWORD')}@${configService.get<string>(
     'MONGO_HOSTNAME',
   )}/${configService.get<string>('MONGO_DB')}`;
-  console.log(connectionUri);
   return {
     uri: connectionUri,
   };
@@ -29,9 +26,9 @@ const getMongoConnection = async (configService: ConfigService) => {
       useFactory: getMongoConnection,
       inject: [ConfigService],
     }),
+    UserModule,
+    TaskModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [AppService, UserService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
