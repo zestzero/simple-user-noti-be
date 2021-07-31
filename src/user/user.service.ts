@@ -13,6 +13,10 @@ export class UserService {
     return createdUser.save();
   }
 
+  async findById(userId: string): Promise<User> {
+    return this.userModel.findById(userId);
+  }
+
   async findAll(): Promise<User[]> {
     return this.userModel.find();
   }
