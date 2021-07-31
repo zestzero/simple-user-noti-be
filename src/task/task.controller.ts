@@ -5,20 +5,20 @@ import { TaskService } from './task.service';
 
 @Controller('tasks')
 export class TaskController {
-  constructor(private readonly taskService: TaskService) {}
+    constructor(private readonly taskService: TaskService) {}
 
-  @Post()
-  async create(@Body() createUserDto: CreateTaskDto) {
-    await this.taskService.create(createUserDto);
-  }
+    @Post()
+    async create(@Body() createUserDto: CreateTaskDto) {
+        await this.taskService.create(createUserDto);
+    }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Task> {
-    return this.taskService.findById(id);
-  }
+    @Get(':id')
+    async findOne(@Param('id') id: string): Promise<Task> {
+        return this.taskService.findById(id);
+    }
 
-  @Get()
-  async findAll(): Promise<Task[]> {
-    return this.taskService.findAll();
-  }
+    @Get()
+    async findAll(): Promise<Task[]> {
+        return this.taskService.findAll();
+    }
 }
