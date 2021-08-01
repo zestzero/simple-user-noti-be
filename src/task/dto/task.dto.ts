@@ -1,5 +1,5 @@
 export class CreateTaskDto {
-  readonly title: string;
-  readonly assignees: string | null;
-  readonly completed: boolean;
+    readonly title: string;
+    readonly assignees: string | null;
+    readonly completed: boolean;
 }
