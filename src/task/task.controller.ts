@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
 import { CreateTaskDto } from './dto/task.dto';
 import { Task } from './schemas/task.schema';
 import { TaskService } from './task.service';
@@ -18,6 +19,7 @@ export class TaskController {
     }
 
     @Get()
+    @MessagePattern({ cmd: 'getAllTasks' })
     async getAllTasks(): Promise<Task[]> {
         return this.taskService.findAll();
     }
