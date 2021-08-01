@@ -13,6 +13,9 @@ export class Task {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
     assignees: User[];
 
+    @Prop({ default: false })
+    completed: boolean;
+
     @Prop({ default: new Date() })
     createWhen: Date;
 
