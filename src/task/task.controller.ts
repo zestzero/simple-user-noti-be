@@ -13,12 +13,12 @@ export class TaskController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string): Promise<Task> {
+    async getTaskById(@Param('id') id: string): Promise<Task> {
         return this.taskService.findById(id);
     }
 
     @Get()
-    async findAll(): Promise<Task[]> {
+    async getAllTasks(): Promise<Task[]> {
         return this.taskService.findAll();
     }
 }

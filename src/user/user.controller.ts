@@ -13,12 +13,12 @@ export class UserController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string): Promise<User> {
+    async getUserById(@Param('id') id: string): Promise<User> {
         return this.userService.findById(id);
     }
 
     @Get()
-    async findAll(): Promise<User[]> {
+    async getAllUsers(): Promise<User[]> {
         return this.userService.findAll();
     }
 }
